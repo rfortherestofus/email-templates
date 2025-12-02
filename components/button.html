@@ -40,7 +40,7 @@
     baseStyles: baseStyles.join(""),
     classes: classes.join(" "),
     href: props.href || "https://rfortherestofus.com",
-    icon: props.icon || "arrow-right.svg",
+    icon: props.icon || "https://emailtemplates.rfortherestofus.com/images/arrow-right.svg",
     iconWidth: props["icon-width"] || 12,
     iconPosition: props["icon-position"] || "right",
     iconClass: props["icon-class"] || "",
@@ -60,21 +60,17 @@
       </outlook>
     </if>
     <if condition="iconPosition === 'left'">
-      <span style="mso-text-raise: {{ msoPt }}">
-        <img src="{{ icon }}" width="{{ iconWidth }}" class="align-baseline max-w-full {{ iconClass }}" />
-      </span>
+      <span style="mso-text-raise: {{ msoPt }}">→</span>
       <outlook trim>
         <i class="mso-font-width-[30%]" hidden>&emsp;&#8203;</i>
       </outlook>
     </if>
-    <span class="{{ iconPosition === 'right' ? 'mr-2' : 'ml-2' }}" style="mso-text-raise: {{ msoPt }};"><yield /></span>
+    <span class="{{ iconPosition === 'right' ? 'mr-1' : 'ml-1' }}" style="mso-text-raise: {{ msoPt }};"><yield /></span>
     <if condition="iconPosition === 'right'">
       <outlook trim>
         <i class="mso-font-width-[30%]" hidden>&emsp;&#8203;</i>
       </outlook>
-      <span style="mso-text-raise: {{ msoPt }}">
-        <img src="{{ icon }}" width="{{ iconWidth }}" class="align-baseline max-w-full {{ iconClass }}" />
-      </span>
+      <span style="mso-text-raise: {{ msoPt }}">→</span>
     </if>
     <if condition="msoPx || msoPr">
       <outlook trim>

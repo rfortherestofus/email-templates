@@ -5,48 +5,92 @@ preheader: What's New in R email template
 
 <x-main>
   <div class="bg-slate-50 font-inter sm:px-4">
-    <table align="center" class="m-0 mx-auto">
+    <table align="center" class="m-0 mx-auto w-[552px] max-w-full">
+      <!-- Header -->
       <tr>
-        <td class="w-[552px] max-w-full"></td>
-      </tr>
-      <tr>
-        <td class="w-[552px] max-w-full">
+        <td>
           <x-header menu-type="stacked-center" />
         </td>
       </tr>
 
-      <!-- <tr>
-        <td class="w-[552px] max-w-full">
-          <x-promo-box />
-          <x-divider />
-        </td>
-      </tr> -->
-
+      <!-- Intro text section -->
       <tr>
-        <td class="w-[552px] max-w-full">
+        <td>
           <table class="w-full">
             <tr>
               <td class="bg-white px-9 py-6 sm:p-6">
                 <x-content>
-                  <fill:text>[[[ content ]]]</fill:text>
-                  <!-- <fill:text>
-                    <md src="content/sample-email.md" />
-                  </fill:text> -->
+                  <fill:text>
+                    <md src="content/whats-new-intro.md" />
+                    [[[intro_text:text]]]
+                  </fill:text>
                 </x-content>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
 
-                <!-- <x-spacer height="44px" />
+      <!-- Resource 1 -->
+      <tr>
+        <td>
+          <x-resource-item
+            number="1"
+            title="[[[resource1_title:text]]]"
+            image="[[[resource1_image:image]]]"
+            description="[[[resource1_description:text]]]"
+            link="[[[resource1_link:text]]]"
+          />
+        </td>
+      </tr>
 
-                <h2 class="m-0 p-0 text-left text-2xl/7 font-semibold text-gray-950">Courses</h2>
+      <tr>
+        <td>
+          <x-rru-feature
+            title="[[[rru_feature_title:text]]]"
+            description="[[[rru_feature_description:text]]]"
+            link="[[[rru_feature_link:text]]]"
+          />
+        </td>
+      </tr>
 
-                <x-spacer height="22px" />
+      <!-- Resource 2 -->
+      <tr>
+        <td>
+          <x-resource-item
+            number="2"
+            title="[[[resource2_title:text]]]"
+            image="[[[resource2_image:image]]]"
+            description="[[[resource2_description:text]]]"
+            link="[[[resource2_link:text]]]"
+          />
+        </td>
+      </tr>
 
-                <x-course-info type="core" />
+      <!-- Resource 3 -->
+      <tr>
+        <td>
+          <x-resource-item
+            number="3"
+            title="[[[resource3_title:text]]]"
+            image="[[[resource3_image:image]]]"
+            description="[[[resource3_description:text]]]"
+            link="[[[resource3_link:text]]]"
+          />
+        </td>
+      </tr>
 
-                <x-spacer height="22px" />
-
-                <x-course-info type="topics" /> -->
-
-                <!-- <x-rin3 /> -->
+      <!-- Footer content section -->
+      <tr>
+        <td>
+          <table class="w-full">
+            <tr>
+              <td class="bg-white px-9 py-6 sm:p-6">
+                <x-content>
+                  <fill:text>
+                    <md src="content/whats-new-conclusion.md" />
+                  </fill:text>
+                </x-content>
               </td>
             </tr>
           </table>

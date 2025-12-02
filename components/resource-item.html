@@ -1,0 +1,57 @@
+<script props>
+  module.exports = {
+    number: props.number || "1",
+    title: props.title || "[[[ resource_title ]]]",
+    image: props.image || "[[[ resource_image ]]]",
+    description: props.description || "[[[ resource_description ]]]",
+    link: props.link || "[[[ resource_link ]]]",
+  };
+</script>
+
+<table class="w-full">
+  <tr>
+    <td class="bg-white px-9 py-6 sm:p-6">
+      <!-- Numbered pill badge -->
+      <div>
+        <span
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-900 text-xl font-normal text-white"
+        >
+          {{ number }}
+        </span>
+      </div>
+
+      <x-spacer height="12px" />
+
+      <!-- Title -->
+      <a href="{{{ link }}}" class="no-underline">
+        <h3 class="m-0 text-xl/6 font-semibold text-gray-950">{{{ title }}}</h3>
+      </a>
+
+      <x-spacer height="16px" />
+
+      <!-- Featured image -->
+      <a href="{{{ link }}}">
+        <img src="{{{ image }}}" alt="" class="w-full max-w-full rounded-md shadow-md" style="display: block" />
+      </a>
+
+      <x-spacer height="20px" />
+
+      <!-- Description -->
+      <x-content container-class="p-0">
+        <fill:text>{{{ description }}}</fill:text>
+      </x-content>
+
+      <x-spacer height="20px" />
+
+      <!-- Read More button with right arrow -->
+      <x-button
+        href="{{{ link }}}"
+        align="left"
+        class="rounded-full bg-white text-blue-900"
+        style="border: 2px solid #1e3a5f"
+      >
+        Read More
+      </x-button>
+    </td>
+  </tr>
+</table>

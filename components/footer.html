@@ -60,7 +60,7 @@
         <tr>
           <each loop="item, index in menuItems">
             <td class="{{ loop.last ? '' : 'pr-6' }}">
-              <a href="{{{ item.href }}}" class="text-sm/5 text-gray-500 hover:text-gray-950 no-underline">
+              <a href="{{{ item.href }}}" class="text-sm/5 text-gray-500 hover:text-blue-400 no-underline font-medium">
                 {{{ item.label }}}
               </a>
             </td>
@@ -75,7 +75,7 @@
           <each loop="item in socialMenuItems">
             <td class="{{ loop.last ? '' : 'pr-6' }}">
               <a href="{{{ item.href }}}">
-                <img src="{{{ item.src }}}" width="{{ item.width }}" alt="{{{ item.alt }}}" class="max-w-full align-middle">
+                <img src="{{{ item.src }}}" width="{{ item.width }}" alt="{{{ item.alt }}}" class="font-normal max-w-full align-middle">
               </a>
             </td>
           </each>
@@ -88,7 +88,7 @@
         <tr>
           <td class="p-0 px-6">
             <slot:copyright>
-              <p class="m-0 text-center text-base/6 text-gray-400">
+              <p class="m-0 text-center text-base/6 text-sm text-gray-400">
                 &copy; {{ new Date().getFullYear() }} R for the Rest of Us
                 <br>
                 3519 NE 15th Ave, Suite #167 Portland, OR 97212
@@ -98,7 +98,7 @@
             <slot:unsubscribe>
               <x-spacer height="24px" />
 
-              <p class="m-0 text-center text-base/6 text-gray-400">
+              <p class="m-0 text-center text-base/6 text-sm text-gray-400">
                 
                 No longer want to receive emails?
                 <a href="{{ unsubscribeUrl }}" class="underline hover:no-underline text-gray-400">Unsubscribe</a>

@@ -7,16 +7,16 @@ showSampleContent: false
 
 <x-main>
   <div class="bg-slate-50 font-inter sm:px-4">
-    <table align="center" class="m-0 mx-auto">
+    <table align="center" class="m-0 mx-auto w-[552px] max-w-full">
       <tr>
-        <td class="w-[552px] max-w-full">
+        <td>
           <x-header menu-type="stacked-center" />
         </td>
       </tr>
 
       <if condition="page.showPromoBox">
         <tr>
-          <td class="w-[552px] max-w-full">
+          <td>
             <x-promo-box />
             <x-divider />
           </td>
@@ -24,7 +24,7 @@ showSampleContent: false
       </if>
 
       <tr>
-        <td class="w-[552px] max-w-full">
+        <td>
           <table class="w-full">
             <tr>
               <td class="bg-white px-9 py-6 sm:p-6">

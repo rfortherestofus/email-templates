@@ -6,7 +6,6 @@
     { label: "Consulting", href: "https://claritydatastudio.com" },
   ];
 
-  let containerBg = props["container-bg"] || "";
   let containerClasses = props["container-class"] || "";
   let menuType = props["menu-type"] || "stacked-center";
 
@@ -27,7 +26,6 @@
     align,
     stackedAlign,
     menuType,
-    containerBg,
     containerClasses,
     menuItems: props["menu-items"] || defaultMenuItems,
     containerBaseStyles: containerBaseStyles.join(";"),
@@ -59,7 +57,7 @@
                         </if>
                         <a
                           href="{{{ item.href }}}"
-                          class="inline-block text-sm/8 text-gray-500 font-medium no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                          class="inline-block text-sm/8 text-gray-500 font-medium hover:text-blue-400 no-underline {{ index > 0 ? 'ml-6' : '' }}"
                         >
                           <span>{{{ item.label }}}</span>
                         </a>

@@ -1,0 +1,40 @@
+<script props>
+  module.exports = {
+    title: props.title || "[[[rru_feature_title:text]]]",
+    description: props.description || "[[[rru_feature_description:text]]]",
+    link: props.link || "[[[rru_feature_link:text]]]",
+  };
+</script>
+
+<table class="w-full">
+  <tr>
+    <td class="bg-gray-100 px-9 py-12 sm:p-6">
+      <!-- Label -->
+      <p class="m-0 text-sm font-semibold uppercase tracking-wide text-gray-600">New from R for the Rest of Us</p>
+
+      <x-spacer height="12px" />
+
+      <!-- Title -->
+      <h3 class="m-0 text-xl/6 font-semibold text-gray-950">{{{ title }}}</h3>
+
+      <x-spacer height="16px" />
+
+      <!-- Description -->
+      <x-content container-class="p-0 bg-gray-100">
+        <fill:text>{{{ description }}}</fill:text>
+      </x-content>
+
+      <x-spacer height="20px" />
+
+      <!-- Read More button with right arrow -->
+      <x-button
+        href="{{{ link }}}"
+        align="left"
+        class="rounded-full bg-blue-900 text-white"
+        style="border: 2px solid #1e3a5f"
+      >
+        Read More
+      </x-button>
+    </td>
+  </tr>
+</table>
