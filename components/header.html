@@ -1,7 +1,14 @@
 <script props>
+  // Default menu items for R for the Rest of Us
+  const defaultMenuItems = [
+    { label: "Courses", href: "https://rfortherestofus.com/courses" },
+    { label: "Training", href: "https://rfortherestofus.com/training" },
+    { label: "Consulting", href: "https://claritydatastudio.com" },
+  ];
+
   let containerBg = props["container-bg"] || "";
   let containerClasses = props["container-class"] || "";
-  let menuType = props["menu-type"] || "right";
+  let menuType = props["menu-type"] || "stacked-center";
 
   let align = {
     left: "text-left sm:text-right",
@@ -16,14 +23,6 @@
 
   let containerBaseStyles = ["background-color: #fffffe", "padding: 24px"];
 
-  // Default menu items for R for the Rest of Us
-  const defaultMenuItems = [
-    { label: "Courses", href: "https://rfortherestofus.com/courses" },
-    { label: "Training", href: "https://rfortherestofus.com/training" },
-    { label: "Consulting", href: "https://claritydatastudio.com" },
-    { label: "Contact", href: "https://rfortherestofus.com/contact" },
-  ];
-
   module.exports = {
     align,
     stackedAlign,
@@ -32,14 +31,14 @@
     containerClasses,
     menuItems: props["menu-items"] || defaultMenuItems,
     containerBaseStyles: containerBaseStyles.join(";"),
-    logoSrc: props["logo-src"] || "rru-logo-blue.png",
+    logoSrc: props["logo-src"] || "https://emailtemplates.rfortherestofus.com/images/rru-logo-blue.png",
     logoAlt: props["logo-alt"] || "R for the Rest of Us",
     logoWidth: props["logo-width"] || 55,
-    logoHref: props["logo-href"] || "https://rfortherestofus.com/",
+    logoHref: props["logo-href"],
   };
 </script>
 
-<table class="w-full" style="background-color: #ffffff; background-image: url(&quot;grid.png&quot;)">
+<table class="w-full" style="background-color: theme(colors.slate.100)">
   <tr>
     <td>&zwj;</td>
     <td class="w-[600px] max-w-full">
@@ -55,12 +54,12 @@
                       <each loop="item, index in menuItems">
                         <if condition="index > 0">
                           <outlook trim>
-                            <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                            <span class="text-sm mso-font-width-[150%]">&emsp;</span>
                           </outlook>
                         </if>
                         <a
                           href="{{{ item.href }}}"
-                          class="inline-block text-base/8 text-gray-500 no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                          class="inline-block text-sm/8 text-gray-500 font-medium no-underline {{ index > 0 ? 'ml-6' : '' }}"
                         >
                           <span>{{{ item.label }}}</span>
                         </a>
@@ -114,12 +113,12 @@
                     <each loop="item, index in menuItems">
                       <if condition="index > 0">
                         <outlook trim>
-                          <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                          <span class="text-sm mso-font-width-[150%]">&emsp;</span>
                         </outlook>
                       </if>
                       <a
                         href="{{{ item.href }}}"
-                        class="ml-6 inline-block text-base/8 text-gray-500 no-underline sm:ml-0 sm:mr-6"
+                        class="ml-6 inline-block text-sm/8 font-medium text-gray-500 no-underline sm:ml-0 sm:mr-6"
                       >
                         {{{ item.label }}}
                       </a>
@@ -133,12 +132,12 @@
                     <each loop="item, index in menuItems.slice(0, 3)">
                       <if condition="index > 0">
                         <outlook trim>
-                          <span class="text-base mso-font-width-[100%]">&emsp;</span>
+                          <span class="text-sm mso-font-width-[100%]">&emsp;</span>
                         </outlook>
                       </if>
                       <a
                         href="{{{ item.href }}}"
-                        class="inline-block text-base/8 text-gray-500  no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                        class="inline-block text-sm/8 text-gray-500 font-medium no-underline {{ index > 0 ? 'ml-6' : '' }}"
                       >
                         {{{ item.label }}}
                       </a>
@@ -166,7 +165,10 @@
                   </td>
                   <td class="hidden pt-6 text-center text-0 sm:block">
                     <each loop="item, index in menuItems">
-                      <a href="{{{ item.href }}}" class="m-0 mx-3 inline-block text-base/8 text-gray-500 no-underline">
+                      <a
+                        href="{{{ item.href }}}"
+                        class="m-0 mx-3 inline-block text-sm/8 font-medium text-gray-500 no-underline"
+                      >
                         {{{ item.label }}}
                       </a>
                     </each>
@@ -176,12 +178,12 @@
                     <each loop="item, index in menuItems.slice(3)">
                       <if condition="index > 0">
                         <outlook trim>
-                          <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                          <span class="text-sm mso-font-width-[150%]">&emsp;</span>
                         </outlook>
                       </if>
                       <a
                         href="{{{ item.href }}}"
-                        class="inline-block text-base/8 text-gray-500  no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                        class="inline-block text-sm/8 text-gray-500 font-medium no-underline {{ index > 0 ? 'ml-6' : '' }}"
                       >
                         {{{ item.label }}}
                       </a>
@@ -217,23 +219,32 @@
                     <div class="text-0">
                       <each loop="item, index in menuItems">
                         <if condition="stackedAlign == 'text-left'">
-                          <a href="{{{ item.href }}}" class="mr-6 inline-block text-base/8 text-gray-500 no-underline">
+                          <a
+                            href="{{{ item.href }}}"
+                            class="mr-6 inline-block text-sm/8 font-medium text-gray-500 no-underline"
+                          >
                             {{{ item.label }}}
                           </a>
                         </if>
                         <if condition="stackedAlign == 'text-center'">
-                          <a href="{{{ item.href }}}" class="mx-3 inline-block text-base/8 text-gray-500 no-underline">
+                          <a
+                            href="{{{ item.href }}}"
+                            class="mx-3 inline-block text-sm font-medium leading-normal text-gray-500 no-underline"
+                          >
                             {{{ item.label }}}
                           </a>
                         </if>
                         <if condition="stackedAlign == 'text-right'">
-                          <a href="{{{ item.href }}}" class="ml-6 inline-block text-base/8 text-gray-500 no-underline">
+                          <a
+                            href="{{{ item.href }}}"
+                            class="ml-6 inline-block text-sm/8 font-medium text-gray-500 no-underline"
+                          >
                             {{{ item.label }}}
                           </a>
                         </if>
                         <if condition="index < menuItems.length - 1">
                           <outlook trim>
-                            <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                            <span class="text-sm mso-font-width-[150%]">&emsp;</span>
                           </outlook>
                         </if>
                       </each>
@@ -249,3 +260,5 @@
     <td>&zwj;</td>
   </tr>
 </table>
+
+<x-divider />
