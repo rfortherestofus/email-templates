@@ -1,0 +1,251 @@
+<script props>
+  let containerBg = props["container-bg"] || "";
+  let containerClasses = props["container-class"] || "";
+  let menuType = props["menu-type"] || "right";
+
+  let align = {
+    left: "text-left sm:text-right",
+    right: "text-right sm:text-left",
+  }[menuType || "right"];
+
+  let stackedAlign = {
+    "stacked-left": "text-left",
+    "stacked-right": "text-right",
+    "stacked-center": "text-center",
+  }[menuType || "stacked-left"];
+
+  let containerBaseStyles = ["background-color: #fffffe", "padding: 24px"];
+
+  // Default menu items for R for the Rest of Us
+  const defaultMenuItems = [
+    { label: "Courses", href: "https://rfortherestofus.com/courses" },
+    { label: "Training", href: "https://rfortherestofus.com/training" },
+    { label: "Consulting", href: "https://claritydatastudio.com" },
+    { label: "Contact", href: "https://rfortherestofus.com/contact" },
+  ];
+
+  module.exports = {
+    align,
+    stackedAlign,
+    menuType,
+    containerBg,
+    containerClasses,
+    menuItems: props["menu-items"] || defaultMenuItems,
+    containerBaseStyles: containerBaseStyles.join(";"),
+    logoSrc: props["logo-src"] || "rru-logo-blue.png",
+    logoAlt: props["logo-alt"] || "R for the Rest of Us",
+    logoWidth: props["logo-width"] || 55,
+    logoHref: props["logo-href"] || "https://rfortherestofus.com/",
+  };
+</script>
+
+<table class="w-full" style="background-color: #ffffff; background-image: url(&quot;grid.png&quot;)">
+  <tr>
+    <td>&zwj;</td>
+    <td class="w-[600px] max-w-full">
+      <table class="w-full">
+        <tr>
+          <td class="{{ containerClasses }}" style="{{ containerBaseStyles }}">
+            <table class="w-full">
+              <tr class="sm:table sm:w-full">
+                <if condition="menuType === 'left'">
+                  <!-- Menu left-aligned -->
+                  <td class="{{ align }} pr-6 sm:table-footer-group">
+                    <div class="text-0 sm:pt-6">
+                      <each loop="item, index in menuItems">
+                        <if condition="index > 0">
+                          <outlook trim>
+                            <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                          </outlook>
+                        </if>
+                        <a
+                          href="{{{ item.href }}}"
+                          class="inline-block text-base/8 text-gray-500 no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                        >
+                          <span>{{{ item.label }}}</span>
+                        </a>
+                      </each>
+                    </div>
+                  </td>
+                  <td class="sm:table-header-group {{ align }}" style="width: {{ logoWidth }}px;">
+                    <if condition="logoHref">
+                      <a href="{{{ logoHref }}}">
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </a>
+                    </if>
+                    <else>
+                      <img
+                        src="{{{ logoSrc }}}"
+                        width="{{ logoWidth }}"
+                        alt="{{{ logoAlt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </else>
+                  </td>
+                </if>
+                <if condition="menuType === 'right'">
+                  <!-- Menu right-aligned -->
+                  <td class="sm:block sm:w-full" style="width: {{ logoWidth }}px;">
+                    <if condition="logoHref">
+                      <a href="{{{ logoHref }}}">
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </a>
+                    </if>
+                    <else>
+                      <img
+                        src="{{{ logoSrc }}}"
+                        width="{{ logoWidth }}"
+                        alt="{{{ logoAlt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </else>
+                  </td>
+                  <td class="{{ align }} pl-6 text-0 sm:block sm:w-full sm:p-[24px_0_0]">
+                    <each loop="item, index in menuItems">
+                      <if condition="index > 0">
+                        <outlook trim>
+                          <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                        </outlook>
+                      </if>
+                      <a
+                        href="{{{ item.href }}}"
+                        class="ml-6 inline-block text-base/8 text-gray-500 no-underline sm:ml-0 sm:mr-6"
+                      >
+                        {{{ item.label }}}
+                      </a>
+                    </each>
+                  </td>
+                </if>
+                <if condition="menuType === 'around'">
+                  <!-- Menu around logo -->
+                  <td class="text-left text-0 sm:hidden">
+                    <!-- First 3 menu items -->
+                    <each loop="item, index in menuItems.slice(0, 3)">
+                      <if condition="index > 0">
+                        <outlook trim>
+                          <span class="text-base mso-font-width-[100%]">&emsp;</span>
+                        </outlook>
+                      </if>
+                      <a
+                        href="{{{ item.href }}}"
+                        class="inline-block text-base/8 text-gray-500  no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                      >
+                        {{{ item.label }}}
+                      </a>
+                    </each>
+                  </td>
+                  <td class="text-center sm:table-header-group" style="width: {{ logoWidth }}px;">
+                    <if condition="logoHref">
+                      <a href="{{{ logoHref }}}">
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </a>
+                    </if>
+                    <else>
+                      <img
+                        src="{{{ logoSrc }}}"
+                        width="{{ logoWidth }}"
+                        alt="{{{ logoAlt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </else>
+                  </td>
+                  <td class="hidden pt-6 text-center text-0 sm:block">
+                    <each loop="item, index in menuItems">
+                      <a href="{{{ item.href }}}" class="m-0 mx-3 inline-block text-base/8 text-gray-500 no-underline">
+                        {{{ item.label }}}
+                      </a>
+                    </each>
+                  </td>
+                  <td class="text-right text-0 sm:hidden">
+                    <!-- Last 3 menu items -->
+                    <each loop="item, index in menuItems.slice(3)">
+                      <if condition="index > 0">
+                        <outlook trim>
+                          <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                        </outlook>
+                      </if>
+                      <a
+                        href="{{{ item.href }}}"
+                        class="inline-block text-base/8 text-gray-500  no-underline {{ index > 0 ? 'ml-6' : '' }}"
+                      >
+                        {{{ item.label }}}
+                      </a>
+                    </each>
+                  </td>
+                </if>
+                <if condition="['stacked-left', 'stacked-right', 'stacked-center'].includes(menuType)">
+                  <!-- Menu stacked -->
+                  <td class="{{ stackedAlign }}">
+                    <div>
+                      <if condition="logoHref">
+                        <a href="{{{ logoHref }}}">
+                          <img
+                            src="{{{ logoSrc }}}"
+                            width="{{ logoWidth }}"
+                            alt="{{{ logoAlt }}}"
+                            class="max-w-full align-middle"
+                          />
+                        </a>
+                      </if>
+                      <else>
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </else>
+                    </div>
+
+                    <x-spacer height="24px" />
+
+                    <div class="text-0">
+                      <each loop="item, index in menuItems">
+                        <if condition="stackedAlign == 'text-left'">
+                          <a href="{{{ item.href }}}" class="mr-6 inline-block text-base/8 text-gray-500 no-underline">
+                            {{{ item.label }}}
+                          </a>
+                        </if>
+                        <if condition="stackedAlign == 'text-center'">
+                          <a href="{{{ item.href }}}" class="mx-3 inline-block text-base/8 text-gray-500 no-underline">
+                            {{{ item.label }}}
+                          </a>
+                        </if>
+                        <if condition="stackedAlign == 'text-right'">
+                          <a href="{{{ item.href }}}" class="ml-6 inline-block text-base/8 text-gray-500 no-underline">
+                            {{{ item.label }}}
+                          </a>
+                        </if>
+                        <if condition="index < menuItems.length - 1">
+                          <outlook trim>
+                            <span class="text-base mso-font-width-[150%]">&emsp;</span>
+                          </outlook>
+                        </if>
+                      </each>
+                    </div>
+                  </td>
+                </if>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&zwj;</td>
+  </tr>
+</table>

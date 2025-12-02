@@ -1,0 +1,191 @@
+<script props>
+  let menuItems = props.menu || [
+    { label: "Courses", href: "https://rfortherestofus.com/courses" },
+    { label: "Training", href: "https://rfortherestofus.com/training" },
+    { label: "Consulting", href: "https://claritydatastudio.com" },
+    { label: "Contact", href: "https://rfortherestofus.com/contact" },
+  ];
+
+  let socialMenuItems = props.social || [
+    { src: "youtube.svg", width: "20", alt: "YouTube", href: "https://youtube.com" },
+    { src: "linkedin.svg", width: "20", alt: "LinkedIn", href: "https://linkedin.com" },
+    { src: "bluesky.svg", width: "20", alt: "Bluesky", href: "https://bsky.app/profile/rfortherestofus.com" },
+  ];
+
+  module.exports = {
+    menuItems,
+    socialMenuItems,
+    logoPosition: props["logo-position"] || "left",
+    containerClasses: props["container-class"] || "",
+    logoSrc: props["logo-src"] || "rru-logo-text-right.png",
+    logoAlt: props["logo-alt"] || "R for the Rest of Us",
+    logoWidth: props["logo-width"] || "200",
+    logoHref: props["logo-href"],
+  };
+</script>
+
+<x-divider />
+<table class="w-full" style="background-color: theme(colors.slate.100)">
+  <tr>
+    <td>&zwj;</td>
+    <td style="background-color: theme(colors.white)" class="w-[600px] pt-11 pb-6 max-w-full {{ containerClasses }}">
+      <table class="w-full">
+        <tr>
+          <if condition="logoPosition === 'left'">
+            <!-- Logo left -->
+            <td class="w-8/12 align-top sm:block sm:w-full">
+              <table class="w-full">
+                <tr>
+                  <td class="p-6 pt-0">
+                    <if condition="logoHref">
+                      <a href="{{{ logoHref }}}">
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </a>
+                    </if>
+                    <else>
+                      <img
+                        src="{{{ logoSrc }}}"
+                        width="{{ logoWidth }}"
+                        alt="{{{ logoAlt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </else>
+
+                    <x-spacer height="24px" />
+
+                    <slot:text>
+                      <p class="m-0 text-base/6 text-gray-500">
+                        You don’t need a PhD in statistics or years of coding experience to learn R. Anyone can learn
+                        the most powerful tool for working with data.
+                      </p>
+                    </slot:text>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td align="right" class="m-0 ml-auto align-top sm:float-none sm:block sm:w-full sm:text-left">
+              <table>
+                <tr>
+                  <td class="p-0 px-6">
+                    <p class="m-0 mb-2.5 text-base/6 font-semibold text-gray-950">Quick Links</p>
+
+                    <each loop="item, index in menuItems">
+                      <p class="m-0 mb-2">
+                        <a
+                          href="{{{ item.href }}}"
+                          class="block text-base/5 text-gray-500 no-underline hover:text-gray-950"
+                        >
+                          {{{ item.label }}}
+                        </a>
+                      </p>
+                    </each>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </if>
+          <if condition="logoPosition === 'right'">
+            <!-- Logo right -->
+            <td class="align-top sm:table-footer-group sm:w-full">
+              <table class="sm:ml-auto">
+                <tr>
+                  <td class="p-0 px-6">
+                    <p class="m-0 mb-2.5 text-base/6 font-semibold text-gray-950">Quick Links</p>
+
+                    <each loop="item, index in menuItems">
+                      <p class="m-0 mb-2">
+                        <a
+                          href="{{{ item.href }}}"
+                          class="block text-base/5 text-gray-500 no-underline hover:text-gray-950"
+                        >
+                          {{{ item.label }}}
+                        </a>
+                      </p>
+                    </each>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="w-8/12 align-top sm:table-header-group sm:w-full">
+              <table class="w-full">
+                <tr>
+                  <td class="p-6 pt-0 text-right">
+                    <if condition="logoHref">
+                      <a href="{{{ logoHref }}}">
+                        <img
+                          src="{{{ logoSrc }}}"
+                          width="{{ logoWidth }}"
+                          alt="{{{ logoAlt }}}"
+                          class="max-w-full align-middle"
+                        />
+                      </a>
+                    </if>
+                    <else>
+                      <img
+                        src="{{{ logoSrc }}}"
+                        width="{{ logoWidth }}"
+                        alt="{{{ logoAlt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </else>
+
+                    <x-spacer height="24px" />
+
+                    <slot:text>
+                      <p class="m-0 text-base/6 text-gray-500">
+                        Lorem ipsum dolor sit amet consectetur. Eget aenean sed sit sed in sapien. Vel auctor arcu nulla
+                        consectetur sed.
+                      </p>
+                    </slot:text>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </if>
+        </tr>
+      </table>
+
+      <x-spacer height="24px" />
+
+      <table class="w-full">
+        <tr>
+          <td class="p-0 px-6 {{ logoPosition === 'right' ? 'sm:text-right' : '' }}">
+            <p class="m-0 mb-3 text-base/6 font-semibold text-gray-950">Follow us</p>
+
+            <table class="{{ logoPosition === 'right' ? 'sm:ml-auto' : '' }}">
+              <tr>
+                <each loop="item in socialMenuItems">
+                  <td class="{{ loop.last ? '' : 'pr-6' }}">
+                    <a href="{{{ item.href }}}">
+                      <img
+                        src="{{{ item.src }}}"
+                        width="{{ item.width }}"
+                        alt="{{{ item.alt }}}"
+                        class="max-w-full align-middle"
+                      />
+                    </a>
+                  </td>
+                </each>
+              </tr>
+            </table>
+
+            <x-spacer height="24px" />
+
+            <slot:copyright>
+              <p class="m-0 text-base text-gray-400">
+                &copy; {{ new Date().getFullYear() }} Mailviews. No longer want to receive emails?
+                <a href="{{ unsubscribeUrl }}" class="text-gray-500 underline hover:no-underline">Unsubscribe</a>
+              </p>
+            </slot:copyright>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&zwj;</td>
+  </tr>
+</table>

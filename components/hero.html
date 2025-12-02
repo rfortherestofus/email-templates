@@ -1,0 +1,108 @@
+<script props>
+  module.exports = {
+    logoSrc: props["logo-src"] || "rru-wordmark.svg",
+    logoAlt: props["logo-alt"] || "R for the Rest of Us",
+    heading: props.heading || "Learn to use the most powerful tool for working with data.",
+    subheading: props.subheading || "Even if you've never coded before.",
+    primaryButtonText: props["primary-button-text"] || "Start free course",
+    primaryButtonHref: props["primary-button-href"] || "#",
+    secondaryButtonText: props["secondary-button-text"] || "Explore all courses",
+    secondaryButtonHref: props["secondary-button-href"] || "#",
+    showButtons: props["show-buttons"] !== "false",
+  };
+</script>
+
+<table class="w-full" style="background-color: #0f172a">
+  <tr>
+    <td>&zwj;</td>
+    <!-- <td
+      style="background-color: #0f172a;"
+      class="w-[600px] max-w-full text-center"
+    > -->
+    <td style="background-color: #ffffff; background-image: url(&quot;grid.png&quot;)">
+      <table class="w-full">
+        <tr>
+          <td class="p-0 px-6">
+            <x-spacer height="48px" />
+
+            <!-- Logo -->
+            <div class="mb-6">
+              <img src="{{{ logoSrc }}}" alt="{{{ logoAlt }}}" width="300" class="mx-auto max-w-full align-middle" />
+            </div>
+
+            <x-spacer height="24px" />
+
+            <!-- Heading -->
+            <h1 class="m-0 text-2xl/8 font-semibold text-white">{{{ heading }}}</h1>
+
+            <x-spacer height="16px" />
+
+            <!-- Subheading -->
+            <p class="m-0 text-lg/7 text-white/70">{{{ subheading }}}</p>
+
+            <x-spacer height="32px" />
+
+            <!-- Buttons -->
+            <if condition="showButtons">
+              <table class="w-full">
+                <tr>
+                  <td class="p-0 text-center" align="center">
+                    <!-- Primary Button -->
+                    <table style="display: inline-block; margin-right: 12px">
+                      <tr>
+                        <td>
+                          <a
+                            href="{{{ primaryButtonHref }}}"
+                            style="
+                              background-color: #3b82f6;
+                              color: white;
+                              text-decoration: none;
+                              padding: 12px 24px;
+                              border-radius: 8px;
+                              font-weight: bold;
+                              display: inline-block;
+                              font-size: 16px;
+                            "
+                          >
+                            {{{ primaryButtonText }}}
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Secondary Button -->
+                    <table style="display: inline-block">
+                      <tr>
+                        <td>
+                          <a
+                            href="{{{ secondaryButtonHref }}}"
+                            style="
+                              background-color: transparent;
+                              color: white;
+                              text-decoration: none;
+                              padding: 12px 24px;
+                              border: 2px solid white;
+                              border-radius: 8px;
+                              font-weight: bold;
+                              display: inline-block;
+                              font-size: 16px;
+                            "
+                          >
+                            {{{ secondaryButtonText }}}
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </if>
+
+            <x-spacer height="48px" />
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&zwj;</td>
+  </tr>
+</table>

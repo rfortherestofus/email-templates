@@ -1,55 +1,85 @@
 <script props>
-  // https://maizzle.com/docs/components/button
-  let align = {
-    left: 'text-left',
-    center: 'text-center',
-    right: 'text-right',
-  }[props.align] || ''
+  let align = "";
 
-  let styles = [
-    'display: inline-block;',
-    'text-decoration: none;',
-    'padding: 16px 24px;',
-    'font-size: 16px;',
-    'line-height: 1;',
-    'border-radius: 4px;',
-  ]
-
-  let hasBgClass = () => props.class && props.class.split(' ').some(c => c.startsWith('bg-'))
-
-  if (props['bg-color'] && !hasBgClass()) {
-    styles.push(`background-color: ${props['bg-color']};`)
-  } else {
-    styles.push('background-color: #4338ca;')
+  if (props.align) {
+    align = {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+    }[props.align];
   }
 
+  let baseStyles = [
+    "display: inline-block;",
+    "text-decoration: none;",
+    "font-size: 16px;",
+    "line-height: 1;",
+    "font-weight: 500;",
+    "border-radius: 8px;",
+    "padding: 14px 20px;",
+  ];
+
+  let classes = [];
+  let hasBgClass = () => props.class && props.class.split(" ").some((c) => c.startsWith("bg-"));
+
   if (props.color) {
-    styles.push(`color: ${props.color};`)
+    baseStyles.push(`color: ${props.color};`);
   } else {
-    styles.push('color: #fffffe;')
+    baseStyles.push(`color: #fffffe;`);
+  }
+
+  if (props["bg-color"] && !hasBgClass()) {
+    baseStyles.push(`background-color: ${props["bg-color"]};`);
+  }
+  if (!props["bg-color"] && !hasBgClass()) {
+    classes.push("bg-blue-400");
   }
 
   module.exports = {
     align,
-    href: props.href,
-    styles: styles.join(''),
-    msoPt: props['mso-pt'] || '16px',
-    msoPb: props['mso-pb'] || '31px',
-  }
+    baseStyles: baseStyles.join(""),
+    classes: classes.join(" "),
+    href: props.href || "https://rfortherestofus.com",
+    icon: props.icon || "arrow-right.svg",
+    iconWidth: props["icon-width"] || 12,
+    iconPosition: props["icon-position"] || "right",
+    iconClass: props["icon-class"] || "",
+    msoPb: props["mso-pb"] || "24px",
+    msoPt: props["mso-pt"] || "14px",
+    msoPl: props["mso-pl"],
+    msoPr: props["mso-pr"],
+    msoPx: props["mso-px"] ?? "150%",
+  };
 </script>
 
 <div class="{{ align }}">
-  <a
-    attributes
-    href="{{{ href }}}"
-    style="{{ styles }}"
-  >
-    <outlook trim>
-      <i class="mso-font-width-[150%]" style="mso-text-raise: {{ msoPb }};" hidden>&emsp;</i>
-    </outlook>
-    <span style="mso-text-raise: {{ msoPt }}" trim><yield /></span>
-    <outlook trim>
-      <i class="mso-font-width-[150%]" hidden>&emsp;&#8203;</i>
-    </outlook>
+  <a attributes href="{{{ href }}}" style="{{{ baseStyles }}}" class="{{{ classes }}}">
+    <if condition="msoPx || msoPl">
+      <outlook trim>
+        <i style="mso-text-raise: {{ msoPb }}; mso-font-width: {{ msoPx || msoPl }};" hidden>&emsp;</i>
+      </outlook>
+    </if>
+    <if condition="iconPosition === 'left'">
+      <span style="mso-text-raise: {{ msoPt }}">
+        <img src="{{ icon }}" width="{{ iconWidth }}" class="align-baseline max-w-full {{ iconClass }}" />
+      </span>
+      <outlook trim>
+        <i class="mso-font-width-[30%]" hidden>&emsp;&#8203;</i>
+      </outlook>
+    </if>
+    <span class="{{ iconPosition === 'right' ? 'mr-2' : 'ml-2' }}" style="mso-text-raise: {{ msoPt }};"><yield /></span>
+    <if condition="iconPosition === 'right'">
+      <outlook trim>
+        <i class="mso-font-width-[30%]" hidden>&emsp;&#8203;</i>
+      </outlook>
+      <span style="mso-text-raise: {{ msoPt }}">
+        <img src="{{ icon }}" width="{{ iconWidth }}" class="align-baseline max-w-full {{ iconClass }}" />
+      </span>
+    </if>
+    <if condition="msoPx || msoPr">
+      <outlook trim>
+        <i style="mso-font-width: {{ msoPx || msoPr }};" hidden>&emsp;&#8203;</i>
+      </outlook>
+    </if>
   </a>
 </div>

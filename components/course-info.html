@@ -1,0 +1,100 @@
+<script props>
+  const coreCourses = [
+    {
+      title: "Getting Started with R",
+      href: "https://rfortherestofus.com/courses/getting-started",
+    },
+    {
+      title: "Fundamentals of R",
+      href: "https://rfortherestofus.com/courses/fundamentals",
+    },
+    {
+      title: "Going Deeper with R",
+      href: "https://rfortherestofus.com/courses/going-deeper",
+    },
+  ];
+
+  const topicsCourses = [
+    {
+      title: "Using Git and GitHub with R",
+      href: "https://rfortherestofus.com/courses/git-github/",
+    },
+    {
+      title: "Mapping with R",
+      href: "https://rfortherestofus.com/courses/mapping",
+    },
+    {
+      title: "Making Beautiful Tables with R",
+      href: "https://rfortherestofus.com/courses/tables",
+    },
+    {
+      title: "The Glamour of Graphics",
+      href: "https://rfortherestofus.com/courses/glamour",
+    },
+    {
+      title: "Data Cleaning with R",
+      href: "https://rfortherestofus.com/courses/data-cleaning",
+    },
+    {
+      title: "Package Development with R",
+      href: "https://rfortherestofus.com/courses/package-development",
+    },
+    {
+      title: "Interactive Dashboards with Shiny",
+      href: "https://rfortherestofus.com/courses/shiny",
+    },
+  ];
+
+  const courseType = props.type || "core";
+  const courses = props.courses || (courseType === "topics" ? topicsCourses : coreCourses);
+
+  const defaultDescriptions = {
+    core: '<strong>Core courses:</strong> from "what\'s R?" to "I love R!" in three courses.',
+    topics: "<strong>Topics courses:</strong> deep dives on topics to up your R game.",
+  };
+
+  module.exports = {
+    containerClasses: props["container-class"] || "",
+    courses,
+    defaultDescription: defaultDescriptions[courseType] || defaultDescriptions.core,
+  };
+</script>
+
+<p class="m-0 p-0 text-left text-lg/7 text-gray-600">
+  <slot:description>{{{ defaultDescription }}}</slot:description>
+</p>
+
+<!-- <x-spacer height="44px" /> -->
+
+<table class="w-full" style="background-color: theme(colors.slate.100)">
+  <tr>
+    <td>&zwj;</td>
+    <td style="background-color: theme(colors.white)" class="w-[600px] max-w-full {{ containerClasses }}">
+      <table class="w-full">
+        <tr>
+          <td class="p-0 px-6">
+            <x-spacer height="22px" />
+
+            <ul class="m-0 p-0 pl-5">
+              <each loop="course, index in courses">
+                <li class="{{ index > 0 ? 'mt-3' : '' }}">
+                  <if condition="course.href">
+                    <a href="{{{ course.href }}}" class="text-lg/7 text-blue-600 no-underline hover:underline">
+                      {{{ course.title }}}
+                    </a>
+                  </if>
+                  <else>
+                    <span class="text-lg/7 text-gray-900">{{{ course.title }}}</span>
+                  </else>
+                </li>
+              </each>
+            </ul>
+
+            <!-- <x-spacer height="32px" /> -->
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&zwj;</td>
+  </tr>
+</table>

@@ -1,0 +1,65 @@
+<script props>
+  module.exports = {
+    containerClasses: props["container-class"] || "",
+    boxBgColor: props["box-bg-color"] || "#fffffe",
+    imageSrc: props["image-src"] || "grid.png",
+  };
+</script>
+
+<table class="w-full" style="background-color: theme(colors.slate.100)">
+  <tr>
+    <td>&zwj;</td>
+    <td
+      style="background-color: theme(colors.white); background-image: url('{{{ imageSrc }}}');"
+      class="w-[600px] max-w-full bg-no-repeat bg-cover bg-center {{ containerClasses }}"
+    >
+      <x-v-fill image="{{{ imageSrc }}}" fillcolor="{{ boxBgColor }}">
+        <table class="w-full">
+          <tr>
+            <td class="w-11 sm:w-6">&zwj;</td>
+            <td>
+              <x-spacer height="40px" />
+
+              <table class="w-full">
+                <tr>
+                  <td
+                    style="background-color: {{ boxBgColor }};"
+                    class="p-0 px-11 text-center rounded {{ boxBgColor }}"
+                  >
+                    <x-spacer height="44px" />
+
+                    <slot:title>
+                      <h2 class="m-0 text-2xl/8 font-semibold text-gray-950"> Welcome to Your Workspace </h2>
+                    </slot:title>
+
+                    <slot:lead>
+                      <x-spacer height="16px" />
+
+                      <p class="m-0 text-base/6 font-light text-gray-600">
+                        Your account is ready. Confirm your email to activate access, connect your tools, and start
+                        building smarter with our platform.
+                      </p>
+                    </slot:lead>
+
+                    <slot:cta>
+                      <x-spacer height="36px" />
+                      <x-button href="https://example.com/" class="px-5.5 py-2.5 leading-6 hover:bg-blue-600">
+                        Activate account
+                      </x-button>
+                      <x-spacer height="36px" />
+                    </slot:cta>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="w-11 sm:w-6">&zwj;</td>
+          </tr>
+          <tr>
+            <td><x-spacer height="40px" /></td>
+          </tr>
+        </table>
+      </x-v-fill>
+    </td>
+    <td>&zwj;</td>
+  </tr>
+</table>
